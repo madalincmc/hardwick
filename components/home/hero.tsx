@@ -21,6 +21,7 @@ export function Hero() {
         className="object-cover"
       />
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-black/10" />
+      <div className="absolute inset-x-0 top-0 h-28 bg-linear-to-b from-black/65 to-transparent sm:h-36" aria-hidden />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
         <motion.p

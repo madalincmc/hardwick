@@ -22,6 +22,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isHome = pathname === "/";
+  const onDarkHero = isHome && !scrolled;
+
   return (
     <motion.header
       initial={{ y: -80 }}
@@ -33,7 +36,13 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8">
-        <Link href="/" className="text-lg font-heading font-semibold tracking-[0.15em]">
+        <Link
+          href="/"
+          className={cn(
+            "text-lg font-heading font-semibold tracking-[0.15em] transition-colors",
+            onDarkHero && "text-white"
+          )}
+        >
           HARDWICK
         </Link>
 
@@ -45,8 +54,14 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative text-sm font-medium tracking-wide transition-colors hover:text-foreground",
-                  isActive ? "text-foreground" : "text-muted-foreground"
+                  "relative text-sm font-medium tracking-wide transition-colors",
+                  onDarkHero
+                    ? isActive
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
+                    : isActive
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {link.label}
@@ -63,7 +78,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-1">
           <div className="hidden sm:block">
-            <ThemeToggle />
+            <ThemeToggle onDarkHero={onDarkHero} />
           </div>
           <Button asChild size="sm" className="hidden md:inline-flex">
             <Link href="/contact">Solicită o Ofertă</Link>
@@ -71,7 +86,12 @@ export function Navbar() {
 
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Deschide meniul">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={cn("md:hidden", onDarkHero && "text-white hover:bg-white/10 hover:text-white")}
+                aria-label="Deschide meniul"
+              >
                 <Menu className="size-5" aria-hidden />
               </Button>
             </SheetTrigger>
