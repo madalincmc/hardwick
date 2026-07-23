@@ -12,9 +12,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function ContactPage() {
-  const mapQuery = encodeURIComponent(
-    `${siteConfig.address.street}, ${siteConfig.address.city}, ${siteConfig.address.county}, ${siteConfig.address.postalCode}`
-  );
+  const mapQuery = `${siteConfig.address.lat},${siteConfig.address.lng}`;
 
   return (
     <div className="mx-auto max-w-7xl px-4 pt-28 pb-24 sm:px-6 lg:px-8 lg:pt-36 lg:pb-32">

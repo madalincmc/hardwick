@@ -4,14 +4,16 @@ export const siteConfig = {
   description:
     "Hardwick proiectează, produce și instalează mobilier custom de lux pentru proprietari, designeri de interior și spații comerciale. Design. Producție. Instalare.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://hardwick.example.com",
-  email: "contact@hardwick.example.com",
-  phone: "+40 262 411 782",
+  email: "raresbarbur@gmail.com",
+  phone: "0749 687 074",
   address: {
-    street: "Strada Culturii nr. 22",
+    street: "Aleea Mocirei nr. 12",
     city: "Baia Mare",
-    postalCode: "430311",
+    postalCode: "432100",
     county: "Maramureș",
     country: "România",
+    lat: 47.638557,
+    lng: 23.5193866,
   },
   hours: [
     { day: "Luni – Vineri", time: "09:00 – 18:00" },
