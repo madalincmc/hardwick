@@ -19,9 +19,9 @@ export const siteConfig = {
     { day: "Duminică", time: "Închis" },
   ],
   social: {
-    instagram: "https://instagram.com",
-    pinterest: "https://pinterest.com",
-    houzz: "https://houzz.com",
+    facebook: "https://www.facebook.com/hardwick.srl",
+    instagram: "https://www.instagram.com/hardwicksrl",
+    tiktok: "https://www.tiktok.com/@hardwick.srl",
   },
 };
 

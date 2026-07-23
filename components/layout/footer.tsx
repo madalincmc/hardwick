@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { navLinks } from "@/data/nav";
 import { siteConfig } from "@/lib/site";
+import { FacebookIcon, InstagramIcon, TiktokIcon } from "@/components/shared/social-icons";
+
+const socialLinks = [
+  { name: "Facebook", href: siteConfig.social.facebook, icon: FacebookIcon },
+  { name: "Instagram", href: siteConfig.social.instagram, icon: InstagramIcon },
+  { name: "TikTok", href: siteConfig.social.tiktok, icon: TiktokIcon },
+];
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -50,18 +57,24 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-border pt-8 sm:flex-row">
           <p className="text-xs text-muted-foreground">
             © {year} {siteConfig.name}. Toate drepturile rezervate.
           </p>
-          <a
-            href={siteConfig.social.instagram}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Instagram
-          </a>
+          <div className="flex items-center gap-1">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label={`${siteConfig.name} pe ${social.name}`}
+                className="flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground"
+              >
+                <social.icon className="size-4" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
