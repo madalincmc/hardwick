@@ -7,7 +7,7 @@ export const siteConfig = {
   email: "raresbarbur@gmail.com",
   phone: "0749 687 074",
   address: {
-    street: "Aleea Mocirei nr. 12",
+    street: "Aleea Mocirei nr. 10",
     city: "Baia Mare",
     postalCode: "432100",
     county: "Maramureș",
