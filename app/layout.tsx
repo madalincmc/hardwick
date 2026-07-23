@@ -8,6 +8,7 @@ import { ScrollProgress } from "@/components/layout/scroll-progress";
 import { ScrollToTopButton } from "@/components/layout/scroll-to-top-button";
 import { siteConfig } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/metadata";
+import { Analytics } from "@vercel/analytics/next";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -69,6 +70,7 @@ export default function RootLayout({
           <Footer />
           <ScrollToTopButton />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
