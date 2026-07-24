@@ -56,6 +56,8 @@ about, services, contact); `app/studio/` and `app/api/revalidate/` sit outside i
 **Path alias**: `@/*` maps to the repo root (`tsconfig.json`) — this alias is not usable from `sanity/`
 schema/config files, which run under Sanity's own bundler.
 
-**Contact form** (`components/contact/contact-form.tsx`) does not send email server-side — it opens a
-pre-filled `mailto:` link using the address in `lib/site.ts`. There is no email API integration to wire
-around unless one is added.
+**Contact form** (`components/contact/contact-form.tsx`) posts JSON to `app/api/contact/route.ts`, which
+validates against the zod schema shared from `lib/contact-schema.ts` (client and server both import it, so
+the two never drift), applies spam checks (honeypot field, minimum fill-time, per-IP in-memory rate limit —
+resets on cold start, so it's a deterrent not a guarantee), and sends via Resend. Requires `RESEND_API_KEY`
+and `CONTACT_FROM_EMAIL` (must be a Resend-verified sending domain) set as env vars — see `.env.example`.

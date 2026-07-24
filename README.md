@@ -12,6 +12,7 @@ effort.
 - [Framer Motion](https://www.framer.com/motion/) for animation, [next-themes](https://github.com/pacocoursey/next-themes) for dark mode
 - [yet-another-react-lightbox](https://yet-another-react-lightbox.com) for the fullscreen project gallery
 - [react-hook-form](https://react-hook-form.com) + [zod](https://zod.dev) for the contact form
+- [Resend](https://resend.com) for server-side contact-form email delivery
 
 ## Getting Started
 
@@ -110,6 +111,7 @@ app/
   (site)/               Marketing routes sharing one layout: home, portfolio, project detail, about, services, contact
   studio/[[...tool]]/    Embedded Sanity Studio (/studio)
   api/revalidate/         Webhook endpoint that invalidates cached project data on publish
+  api/contact/            Contact form submission endpoint — validates, spam-checks, and sends via Resend
 components/
   layout/               Navbar, footer, theme toggle, scroll progress/scroll-to-top
   home/                 Homepage sections (hero, featured projects, process, testimonials, CTA)
@@ -136,6 +138,9 @@ scripts/                One-time content migration script
   update the URL client-side after that.
 - Project detail pages are statically generated for known slugs at build time and rendered on-demand for anything
   published afterward (`dynamicParams = true`), so a newly published project appears without a rebuild/redeploy.
-- The contact form does not send email itself — it opens a pre-filled `mailto:` link to `lib/site.ts`'s configured
-  email address. Wire it up to an email API (e.g. Resend) in `components/contact/contact-form.tsx` if server-side
-  delivery is needed later.
+- The contact form (`components/contact/contact-form.tsx`) posts to `app/api/contact/route.ts`, which validates
+  the payload against the shared schema in `lib/contact-schema.ts`, applies basic spam protection (a honeypot
+  field, a minimum fill-time check, and a per-IP in-memory rate limit), then sends the message via
+  [Resend](https://resend.com). Requires `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` to be set (see `.env.example`);
+  `CONTACT_FROM_EMAIL` must be on a domain verified in Resend for production sends. `CONTACT_TO_EMAIL` is optional
+  and defaults to `lib/site.ts`'s `email`.
