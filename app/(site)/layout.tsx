@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/layout/scroll-progress";
 import { ScrollToTopButton } from "@/components/layout/scroll-to-top-button";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -19,6 +20,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       </main>
       <Footer />
       <ScrollToTopButton />
+      <WhatsAppButton />
     </>
   );
 }

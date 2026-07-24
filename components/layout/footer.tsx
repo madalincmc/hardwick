@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { navLinks } from "@/data/nav";
 import { siteConfig } from "@/lib/site";
-import { FacebookIcon, InstagramIcon, TiktokIcon } from "@/components/shared/social-icons";
+import { FacebookIcon, InstagramIcon, TiktokIcon, WhatsappIcon } from "@/components/shared/social-icons";
 
 const socialLinks = [
   { name: "Facebook", href: siteConfig.social.facebook, icon: FacebookIcon },
@@ -51,6 +51,17 @@ export function Footer() {
               <li>
                 <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-foreground">
                   {siteConfig.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`https://wa.me/${siteConfig.whatsappNumber}`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
+                >
+                  <WhatsappIcon className="size-3.5" aria-hidden />
+                  WhatsApp
                 </a>
               </li>
             </ul>

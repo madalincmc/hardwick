@@ -6,6 +6,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://hardwick.example.com",
   email: "raresbarbur@gmail.com",
   phone: "0749 687 074",
+  whatsappNumber: "40749687074",
   address: {
     street: "Aleea Mocirei nr. 10",
     city: "Baia Mare",
