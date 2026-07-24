@@ -19,7 +19,7 @@ const SORT_OPTIONS = ["newest", "oldest", "az"] as const;
 
 export default async function PortfolioPage({ searchParams }: PortfolioPageProps) {
   const params = await searchParams;
-  const projects = getAllProjects();
+  const projects = await getAllProjects();
 
   const initialCategory: Category | "All" = CATEGORIES.includes(params.category as Category)
     ? (params.category as Category)

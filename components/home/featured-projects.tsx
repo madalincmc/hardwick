@@ -6,8 +6,8 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
 
-export function FeaturedProjects() {
-  const projects = getFeaturedProjects(6);
+export async function FeaturedProjects() {
+  const projects = await getFeaturedProjects(6);
 
   return (
     <section className="bg-muted/40 py-24 lg:py-32">

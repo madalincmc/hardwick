@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Mobilier Custom Fără Compromis",
   description:
     "Hardwick proiectează, produce și instalează mobilier custom de lux pentru proprietari, designeri de interior și spații comerciale. Design. Producție. Instalare.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://hardwick.example.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://hardwick.example.com",
   email: "raresbarbur@gmail.com",
   phone: "0749 687 074",
   address: {
