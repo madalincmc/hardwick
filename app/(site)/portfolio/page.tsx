@@ -2,20 +2,38 @@ import type { Metadata } from "next";
 import { getAllProjects } from "@/lib/projects";
 import { PortfolioGrid } from "@/components/portfolio/portfolio-grid";
 import { buildMetadata } from "@/lib/metadata";
-import { CATEGORIES, type Category } from "@/types/project";
-
-export const metadata: Metadata = buildMetadata({
-  title: "Portofoliu",
-  description:
-    "Explorează portofoliul Hardwick de bucătării, dulapuri, camere de zi, dormitoare, băi, birouri și mobilier comercial la comandă.",
-  path: "/portfolio",
-});
+import { CATEGORIES, CATEGORY_LABELS, type Category } from "@/types/project";
 
 interface PortfolioPageProps {
   searchParams: Promise<{ category?: string; q?: string; sort?: string }>;
 }
 
 const SORT_OPTIONS = ["newest", "oldest", "az"] as const;
+
+// Only `category` gets its own canonical/indexable URL — it's a fixed, finite facet worth
+// ranking for (e.g. "custom kitchens Baia Mare"). `q`/`sort` are dropped from the canonical
+// so search and sort variations consolidate onto the category (or root) page instead of
+// generating thin duplicate-content URLs.
+export async function generateMetadata({ searchParams }: PortfolioPageProps): Promise<Metadata> {
+  const params = await searchParams;
+  const category = CATEGORIES.includes(params.category as Category) ? (params.category as Category) : undefined;
+
+  if (!category) {
+    return buildMetadata({
+      title: "Portofoliu",
+      description:
+        "Explorează portofoliul Hardwick de bucătării, dulapuri, camere de zi, dormitoare, băi, birouri și mobilier comercial la comandă.",
+      path: "/portfolio",
+    });
+  }
+
+  const label = CATEGORY_LABELS[category];
+  return buildMetadata({
+    title: `${label} — Portofoliu`,
+    description: `Descoperă proiectele Hardwick de ${label.toLowerCase()} la comandă — design, producție și instalare.`,
+    path: `/portfolio?${new URLSearchParams({ category }).toString()}`,
+  });
+}
 
 export default async function PortfolioPage({ searchParams }: PortfolioPageProps) {
   const params = await searchParams;

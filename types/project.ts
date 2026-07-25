@@ -33,4 +33,5 @@ export interface Project {
   featured: boolean;
   clientRequirements?: string;
   highlights?: string[];
+  updatedAt: string;
 }

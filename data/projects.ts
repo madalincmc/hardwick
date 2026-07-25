@@ -4,7 +4,9 @@ function img(id: string) {
   return `https://images.unsplash.com/photo-${id}`;
 }
 
-export const projects: Project[] = [
+// Seed data for scripts/migrate-to-sanity.ts. `updatedAt` is omitted — it's a genuine
+// Sanity-assigned timestamp (types/project.ts), not something this literal seed data has.
+export const projects: Omit<Project, "updatedAt">[] = [
   {
     title: "Bucătărie Rezidența Grigorescu",
     slug: "bucatarie-rezidenta-grigorescu",

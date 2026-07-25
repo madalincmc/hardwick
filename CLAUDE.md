@@ -50,6 +50,16 @@ the URL search params server-side and does the initial fetch/filter render on th
 views are shareable links); `components/portfolio/portfolio-grid.tsx` then handles client-side interaction
 and updates the URL without a full navigation.
 
+**SEO: sitemap/robots** (`app/sitemap.ts`, `app/robots.ts`) — only `category` gets its own canonical URL
+(`generateMetadata` in `portfolio/page.tsx`); `q`/`sort` deliberately don't, so search/sort combinations
+consolidate onto the category (or root) page instead of indexing as thin duplicate content. The `?category=`
+encoding in `sitemap.ts` must keep using `URLSearchParams` (not manual string building) to stay byte-identical
+with the canonical URLs `generateMetadata` emits and the URLs `portfolio-grid.tsx` pushes to the address bar
+— e.g. "Living Rooms" must consistently encode to `Living+Rooms` everywhere. Project page `lastModified` comes
+from Sanity's real `_updatedAt` (threaded through `SanityProjectDoc` → `Project.updatedAt` in `lib/projects.ts`)
+— don't fabricate a `lastModified`/`updatedAt` for pages that don't have a genuine backing timestamp, since
+search engines treat sitemaps with fake dates as a negative trust signal.
+
 **Route groups**: `app/(site)/` shares one layout for all marketing pages (home, portfolio, project detail,
 about, services, contact); `app/studio/` and `app/api/revalidate/` sit outside it.
 

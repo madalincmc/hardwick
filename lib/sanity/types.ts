@@ -15,4 +15,5 @@ export interface SanityProjectDoc {
   highlights?: string[];
   coverImage: Image;
   gallery?: Image[];
+  _updatedAt: string;
 }

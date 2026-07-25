@@ -10,7 +10,8 @@ const PROJECT_PROJECTION = /* groq */ `{
   clientRequirements,
   highlights,
   coverImage,
-  gallery
+  gallery,
+  _updatedAt
 }`;
 
 export const PROJECTS_QUERY = /* groq */ `

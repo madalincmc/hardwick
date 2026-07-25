@@ -18,6 +18,7 @@ function toProject(doc: SanityProjectDoc): Project {
     featured: doc.featured ?? false,
     clientRequirements: doc.clientRequirements,
     highlights: doc.highlights,
+    updatedAt: doc._updatedAt,
   };
 }
 
