@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getAllProjects } from "@/lib/projects";
 import { PortfolioGrid } from "@/components/portfolio/portfolio-grid";
-import { buildMetadata } from "@/lib/metadata";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/metadata";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { CATEGORIES, CATEGORY_LABELS, type Category } from "@/types/project";
 
 interface PortfolioPageProps {
@@ -22,15 +23,15 @@ export async function generateMetadata({ searchParams }: PortfolioPageProps): Pr
     return buildMetadata({
       title: "Portofoliu",
       description:
-        "Explorează portofoliul Hardwick de bucătării, dulapuri, camere de zi, dormitoare, băi, birouri și mobilier comercial la comandă.",
+        "Portofoliu de mobilă la comandă concepută și produsă în atelierul Hardwick din Baia Mare: bucătării, dulapuri, camere de zi, dormitoare, băi, birouri și mobilier comercial.",
       path: "/portfolio",
     });
   }
 
   const label = CATEGORY_LABELS[category];
   return buildMetadata({
-    title: `${label} — Portofoliu`,
-    description: `Descoperă proiectele Hardwick de ${label.toLowerCase()} la comandă — design, producție și instalare.`,
+    title: `${label} la Comandă — Portofoliu`,
+    description: `${label} la comandă, concepute și produse în atelierul nostru din Baia Mare — vezi proiecte realizate pentru clienți din toată țara.`,
     path: `/portfolio?${new URLSearchParams({ category }).toString()}`,
   });
 }
@@ -48,7 +49,15 @@ export default async function PortfolioPage({ searchParams }: PortfolioPageProps
 
   return (
     <div className="mx-auto max-w-7xl px-4 pt-28 pb-24 sm:px-6 lg:px-8 lg:pt-36 lg:pb-32">
-      <div className="max-w-2xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([{ name: "Acasă", path: "/" }, { name: "Portofoliu", path: "/portfolio" }])),
+        }}
+      />
+      <Breadcrumbs items={[{ name: "Acasă", href: "/" }, { name: "Portofoliu" }]} />
+
+      <div className="mt-6 max-w-2xl">
         <p className="mb-3 text-xs font-medium tracking-[0.2em] text-gold uppercase">Portofoliu</p>
         <h1 className="text-3xl font-medium tracking-tight text-balance sm:text-4xl">
           O colecție construită proiect cu proiect

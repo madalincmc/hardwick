@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 
 const TALL_INDEXES = new Set([0, 3, 7]);
 
-export function ProjectGallery({ images, title }: { images: string[]; title: string }) {
+export function ProjectGallery({ images, title, category }: { images: string[]; title: string; category: string }) {
   const [index, setIndex] = React.useState(-1);
 
   const slides = images.map((src) => ({ src }));
@@ -36,7 +36,7 @@ export function ProjectGallery({ images, title }: { images: string[]; title: str
           >
             <Image
               src={src}
-              alt={`${title} — fotografia ${i + 1}`}
+              alt={`${title} — mobilă la comandă, ${category}, fotografia ${i + 1}`}
               fill
               placeholder="blur"
               blurDataURL={blurDataURL()}

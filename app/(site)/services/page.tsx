@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PenTool, Factory, HardHat, Check, ArrowRight } from "lucide-react";
-import { buildMetadata } from "@/lib/metadata";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/metadata";
 import { services } from "@/data/services";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 export const metadata: Metadata = buildMetadata({
   title: "Servicii",
-  description: "Serviciile complete Hardwick: design de mobilier custom, producție proprie și instalare profesională.",
+  description:
+    "Servicii complete de mobilă la comandă în Baia Mare: design de mobilier custom, producție proprie în atelier și instalare profesională.",
   path: "/services",
 });
 
@@ -24,13 +25,22 @@ const icons = [PenTool, Factory, HardHat];
 export default function ServicesPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 pt-28 pb-24 sm:px-6 lg:px-8 lg:pt-36 lg:pb-32">
-      <div className="max-w-2xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([{ name: "Acasă", path: "/" }, { name: "Servicii", path: "/services" }])),
+        }}
+      />
+      <Breadcrumbs items={[{ name: "Acasă", href: "/" }, { name: "Servicii" }]} />
+
+      <div className="mt-6 max-w-2xl">
         <p className="mb-3 text-xs font-medium tracking-[0.2em] text-gold uppercase">Servicii</p>
         <h1 className="text-3xl font-medium tracking-tight text-balance sm:text-4xl">
           Un singur studio, de la schiță până la instalare
         </h1>
         <p className="mt-4 text-base text-muted-foreground text-pretty">
-          Gestionăm fiecare etapă intern, astfel încât nimic să nu se piardă între designer, atelier și șantier.
+          Gestionăm fiecare etapă intern, în atelierul nostru din Baia Mare, astfel încât nimic să nu se piardă între
+          designer, atelier și șantier.
         </p>
       </div>
 
@@ -44,7 +54,7 @@ export default function ServicesPage() {
                   <div className="flex size-12 items-center justify-center rounded-full border border-border">
                     <Icon className="size-5 text-gold" strokeWidth={1.25} aria-hidden />
                   </div>
-                  <CardTitle className="mt-5 text-xl font-medium">{service.title}</CardTitle>
+                  <h2 className="mt-5 text-xl font-medium leading-none">{service.title}</h2>
                   <CardDescription className="text-base">{service.description}</CardDescription>
                 </CardHeader>
                 <CardContent>

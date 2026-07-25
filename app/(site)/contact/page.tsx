@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
-import { buildMetadata } from "@/lib/metadata";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { ContactForm } from "@/components/contact/contact-form";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact",
-  description: "Ia legătura cu Hardwick pentru a solicita o ofertă pentru proiectul tău de mobilier custom.",
+  description: "Solicită o ofertă pentru mobilă la comandă în Baia Mare și Maramureș — povestește-ne despre proiectul tău.",
   path: "/contact",
 });
 
@@ -16,11 +17,20 @@ export default function ContactPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 pt-28 pb-24 sm:px-6 lg:px-8 lg:pt-36 lg:pb-32">
-      <div className="max-w-2xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([{ name: "Acasă", path: "/" }, { name: "Contact", path: "/contact" }])),
+        }}
+      />
+      <Breadcrumbs items={[{ name: "Acasă", href: "/" }, { name: "Contact" }]} />
+
+      <div className="mt-6 max-w-2xl">
         <p className="mb-3 text-xs font-medium tracking-[0.2em] text-gold uppercase">Contact</p>
         <h1 className="text-3xl font-medium tracking-tight text-balance sm:text-4xl">Solicită o ofertă</h1>
         <p className="mt-4 text-base text-muted-foreground text-pretty">
-          Povestește-ne puțin despre proiectul tău și te vom contacta pentru a stabili o consultație.
+          Povestește-ne puțin despre proiectul tău de mobilă la comandă în Baia Mare și Maramureș și te vom contacta
+          pentru a stabili o consultație.
         </p>
       </div>
 

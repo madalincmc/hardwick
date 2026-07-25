@@ -46,7 +46,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.35 }}
           className="mt-5 max-w-lg text-base text-white/80 sm:text-lg"
         >
-          Design. Producție. Instalare.
+          Proiectăm, producem și instalăm mobilă la comandă chiar în atelierul nostru din Baia Mare.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 24 }}

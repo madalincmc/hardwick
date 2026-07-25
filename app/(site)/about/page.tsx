@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Sparkles, Target, HeartHandshake } from "lucide-react";
-import { buildMetadata } from "@/lib/metadata";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/metadata";
 import { blurDataURL } from "@/lib/placeholder";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { WorkProcess } from "@/components/home/work-process";
 
 export const metadata: Metadata = buildMetadata({
   title: "Despre Noi",
   description:
-    "Hardwick este un studio de mobilier custom construit în jurul designului, producției proprii și instalării profesionale.",
+    "Povestea atelierului Hardwick din Baia Mare — mobilă la comandă proiectată, produsă și instalată de aceeași echipă, de la prima schiță până la montaj.",
   path: "/about",
 });
 
@@ -35,22 +36,30 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="pt-28 pb-24 lg:pt-36 lg:pb-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([{ name: "Acasă", path: "/" }, { name: "Despre Noi", path: "/about" }])),
+        }}
+      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+        <Breadcrumbs items={[{ name: "Acasă", href: "/" }, { name: "Despre Noi" }]} />
+        <div className="mt-6 grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <AnimatedSection>
             <p className="mb-3 text-xs font-medium tracking-[0.2em] text-gold uppercase">Povestea Noastră</p>
             <h1 className="text-3xl font-medium tracking-tight text-balance sm:text-4xl">
               Mobilier construit să reziste trendurilor
             </h1>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground text-pretty">
-              Hardwick a început ca un mic atelier cu o convingere simplă: mobilierul ar trebui proiectat exact pentru
-              spațiul în care va trăi, construit la un standard pe care producția de masă nu îl poate atinge, și
-              instalat de aceiași oameni care l-au făcut.
+              Hardwick a început ca un mic atelier de mobilă la comandă în Baia Mare, cu o convingere simplă:
+              mobilierul ar trebui proiectat exact pentru spațiul în care va trăi, construit la un standard pe care
+              producția de masă nu îl poate atinge, și instalat de aceiași oameni care l-au făcut.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground text-pretty">
               Astăzi proiectăm, producem și instalăm bucătării, dulapuri, spații de zi și interioare comerciale la
-              comandă pentru clienți cărora le pasă de detalii la fel de mult ca și nouă. Fiecare proiect trece în
-              continuare prin aceleași mâini, de la prima schiță până la montajul final.
+              comandă, chiar în atelierul nostru din Baia Mare, pentru clienți cărora le pasă de detalii la fel de
+              mult ca și nouă. Fiecare proiect trece în continuare prin aceleași mâini, de la prima schiță până la
+              montajul final.
             </p>
           </AnimatedSection>
 
@@ -87,7 +96,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <WorkProcess />
+      <WorkProcess intro="De la prima schiță până la montaj, totul se întâmplă în atelierul nostru din Baia Mare." />
     </div>
   );
 }

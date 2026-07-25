@@ -23,7 +23,7 @@ export function ProjectCard({ project, showDetails = false, priority = false, cl
       <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-muted">
         <Image
           src={project.coverImage}
-          alt={project.title}
+          alt={`${project.title} — mobilă la comandă, ${CATEGORY_LABELS[project.category]}, ${project.location}`}
           fill
           priority={priority}
           placeholder="blur"

@@ -38,6 +38,20 @@ export function buildMetadata({ title, description, path, image }: PageMetadataI
 }
 
 export function organizationJsonLd() {
+  // Only the Luni–Vineri entry has a fixed open/close time — "Cu programare" (Saturday) and
+  // "Închis" (Sunday) don't map to schema.org's opens/closes format, so they're left out.
+  const weekdayHours = siteConfig.hours.find((slot) => slot.day === "Luni – Vineri");
+  const openingHoursSpecification = weekdayHours
+    ? [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: weekdayHours.time.split("–")[0].trim(),
+          closes: weekdayHours.time.split("–")[1].trim(),
+        },
+      ]
+    : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
@@ -54,6 +68,16 @@ export function organizationJsonLd() {
       postalCode: siteConfig.address.postalCode,
       addressCountry: siteConfig.address.country,
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: siteConfig.address.lat,
+      longitude: siteConfig.address.lng,
+    },
+    areaServed: [
+      { "@type": "City", name: "Baia Mare" },
+      { "@type": "AdministrativeArea", name: "Maramureș" },
+    ],
+    openingHoursSpecification,
     sameAs: Object.values(siteConfig.social),
   };
 }

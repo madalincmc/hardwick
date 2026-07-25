@@ -27,6 +27,7 @@ export interface Project {
   location: string;
   year: number;
   description: string;
+  metaDescription?: string;
   materials: string[];
   coverImage: string;
   gallery: string[];

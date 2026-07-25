@@ -9,6 +9,7 @@ export interface SanityProjectDoc {
   location: string;
   year: number;
   description: string;
+  metaDescription?: string;
   materials?: string[];
   featured?: boolean;
   clientRequirements?: string;

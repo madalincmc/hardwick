@@ -12,6 +12,7 @@ function toProject(doc: SanityProjectDoc): Project {
     location: doc.location,
     year: doc.year,
     description: doc.description,
+    metaDescription: doc.metaDescription,
     materials: doc.materials ?? [],
     coverImage: urlFor(doc.coverImage).width(1600).fit("max").auto("format").url(),
     gallery: (doc.gallery ?? []).map((image) => urlFor(image).width(1600).fit("max").auto("format").url()),

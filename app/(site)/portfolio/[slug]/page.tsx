@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
   return buildMetadata({
     title: project.title,
-    description: project.description,
+    description: project.metaDescription || project.description,
     path: `/portfolio/${project.slug}`,
     image: project.coverImage,
   });
@@ -74,7 +74,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       />
 
       <div className="mt-6">
-        <ProjectHero image={project.coverImage} title={project.title} />
+        <ProjectHero
+          image={project.coverImage}
+          title={project.title}
+          category={CATEGORY_LABELS[project.category]}
+          location={project.location}
+        />
       </div>
 
       <div className="mt-12">
@@ -84,7 +89,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <div className="mt-16">
         <h2 className="text-sm font-medium tracking-wide uppercase text-muted-foreground">Galerie</h2>
         <div className="mt-4">
-          <ProjectGallery images={[project.coverImage, ...project.gallery]} title={project.title} />
+          <ProjectGallery
+            images={[project.coverImage, ...project.gallery]}
+            title={project.title}
+            category={CATEGORY_LABELS[project.category]}
+          />
         </div>
       </div>
 

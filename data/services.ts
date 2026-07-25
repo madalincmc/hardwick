@@ -14,7 +14,7 @@ export const services: Service[] = [
   {
     title: "Producție",
     description:
-      "Toată tâmplăria este produsă în propriul atelier, ceea ce ne oferă control total asupra toleranțelor, materialelor și calității finisajului, de la primul debitaj până la lustruirea finală.",
+      "Toată tâmplăria este produsă în atelierul nostru propriu din Baia Mare, ceea ce ne oferă control total asupra toleranțelor, materialelor și calității finisajului, de la primul debitaj până la lustruirea finală.",
     points: ["Atelier propriu", "CNC de precizie și finisare manuală", "Control riguros al calității"],
   },
   {

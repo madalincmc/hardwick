@@ -1,12 +1,19 @@
 import Image from "next/image";
 import { blurDataURL } from "@/lib/placeholder";
 
-export function ProjectHero({ image, title }: { image: string; title: string }) {
+interface ProjectHeroProps {
+  image: string;
+  title: string;
+  category: string;
+  location: string;
+}
+
+export function ProjectHero({ image, title, category, location }: ProjectHeroProps) {
   return (
     <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-muted sm:aspect-[21/9]">
       <Image
         src={image}
-        alt={title}
+        alt={`${title} — mobilă la comandă, ${category}, ${location}`}
         fill
         priority
         placeholder="blur"

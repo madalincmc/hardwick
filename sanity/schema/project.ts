@@ -59,6 +59,14 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "metaDescription",
+      title: "Meta description (SEO)",
+      description:
+        "Optional short description (~150-160 characters) used for the <meta name=\"description\"> tag instead of Description, when you want distinct SEO copy. Falls back to Description if left empty.",
+      type: "text",
+      validation: (rule) => rule.max(160),
+    }),
+    defineField({
       name: "materials",
       title: "Materials",
       type: "array",

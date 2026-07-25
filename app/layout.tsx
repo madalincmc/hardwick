@@ -25,7 +25,15 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["mobilier custom", "mobilier la comandă", "design mobilier", "producție mobilier", "tâmplărie", "Baia Mare"],
+  keywords: [
+    "mobilă la comandă Baia Mare",
+    "mobilier la comandă Baia Mare",
+    "mobilier custom Baia Mare",
+    "mobilă la comandă Maramureș",
+    "atelier de tâmplărie Baia Mare",
+    "design mobilier",
+    "producție mobilier",
+  ],
   openGraph: {
     type: "website",
     siteName: siteConfig.name,

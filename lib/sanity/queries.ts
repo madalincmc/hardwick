@@ -5,6 +5,7 @@ const PROJECT_PROJECTION = /* groq */ `{
   location,
   year,
   description,
+  metaDescription,
   materials,
   featured,
   clientRequirements,

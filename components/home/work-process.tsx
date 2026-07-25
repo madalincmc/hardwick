@@ -25,10 +25,16 @@ const steps = [
   },
 ];
 
-export function WorkProcess() {
+export function WorkProcess({ intro }: { intro?: string } = {}) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-      <SectionHeading eyebrow="Cum Lucrăm" title="Un proces construit pe precizie" align="center" className="mx-auto" />
+      <SectionHeading
+        eyebrow="Cum Lucrăm"
+        title="Un proces construit pe precizie"
+        description={intro}
+        align="center"
+        className="mx-auto"
+      />
 
       <div className="relative mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
         <div
