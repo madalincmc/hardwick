@@ -16,6 +16,7 @@ export function ProjectHero({ image, title, category, location }: ProjectHeroPro
         alt={`${title} — mobilă la comandă, ${category}, ${location}`}
         fill
         priority
+        fetchPriority="high"
         placeholder="blur"
         blurDataURL={blurDataURL(1400, 700)}
         sizes="(min-width: 1280px) 1200px, 100vw"

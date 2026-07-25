@@ -29,6 +29,7 @@ export function ProjectCard({ project, showDetails = false, priority = false, cl
           placeholder="blur"
           blurDataURL={blurDataURL()}
           sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 90vw"
+          quality={70}
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/35 via-black/0 to-black/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

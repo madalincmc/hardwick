@@ -65,9 +65,10 @@ export default function AboutPage() {
 
           <AnimatedSection delay={0.15} className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
             <Image
-              src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe"
+              src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?q=80&w=1200&fm=jpg&fit=crop"
               alt="Detaliu al unei tâmplării personalizate"
               fill
+              quality={70}
               placeholder="blur"
               blurDataURL={blurDataURL(900, 1125)}
               sizes="(min-width: 1024px) 40vw, 90vw"

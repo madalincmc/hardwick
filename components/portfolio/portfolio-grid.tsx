@@ -156,7 +156,7 @@ export function PortfolioGrid({ projects, initialCategory, initialSearch, initia
         <>
           <div className="mt-6 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence initial={false}>
-              {visibleProjects.map((project) => (
+              {visibleProjects.map((project, index) => (
                 <motion.div
                   key={project.slug}
                   layout
@@ -165,7 +165,7 @@ export function PortfolioGrid({ projects, initialCategory, initialSearch, initia
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <ProjectCard project={project} showDetails />
+                  <ProjectCard project={project} showDetails priority={index < 3} />
                 </motion.div>
               ))}
             </AnimatePresence>
