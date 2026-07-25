@@ -25,7 +25,7 @@ export async function FeaturedProjects() {
         <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <AnimatedSection key={project.slug} delay={(index % 3) * 0.08}>
-              <ProjectCard project={project} priority={index < 3} />
+              <ProjectCard project={project} />
             </AnimatedSection>
           ))}
         </div>
